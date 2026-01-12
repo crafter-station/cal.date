@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 import { QueryProvider } from "@/components/providers/query-provider"
+import { Button } from "@/components/ui/button"
 import "./globals.css"
 
 const inter = Inter({ 
@@ -67,19 +68,20 @@ export default function RootLayout({
         },
         elements: {
           formButtonPrimary:
-            "bg-[#e85a77] hover:bg-[#d14a67] text-white shadow-none",
-          card: "shadow-lg border border-neutral-200",
-          headerTitle: "font-semibold",
-          headerSubtitle: "text-neutral-500",
+            "bg-stone-900 hover:bg-stone-800 text-white shadow-sm hover:shadow-md rounded-full transition-all",
+          card: "shadow-lg border border-stone-200/60 rounded-2xl",
+          headerTitle: "font-display font-semibold text-stone-900",
+          headerSubtitle: "text-stone-500",
           socialButtonsBlockButton:
-            "border border-neutral-200 hover:bg-neutral-50",
+            "border border-stone-200 hover:bg-stone-50 rounded-lg transition-all",
           formFieldInput:
-            "border-neutral-200 focus:border-[#e85a77] focus:ring-[#e85a77]/20",
-          footerActionLink: "text-[#e85a77] hover:text-[#d14a67]",
-          identityPreviewEditButton: "text-[#e85a77]",
-          userButtonPopoverActionButton: "hover:bg-neutral-100",
-          userButtonPopoverActionButtonText: "text-neutral-700",
+            "border-stone-200 focus:border-stone-800 focus:ring-stone-800/20 rounded-lg",
+          footerActionLink: "text-stone-900 hover:text-stone-700",
+          identityPreviewEditButton: "text-stone-900 hover:text-stone-700",
+          userButtonPopoverActionButton: "hover:bg-stone-100 rounded-lg",
+          userButtonPopoverActionButtonText: "text-stone-700",
           userButtonPopoverFooter: "hidden",
+          button: "bg-stone-900 hover:bg-stone-800 text-white rounded-full",
         },
       }}
     >
@@ -87,7 +89,11 @@ export default function RootLayout({
         <body className={`${inter.variable} font-sans antialiased`}>
           <header className="fixed top-4 right-4 z-50">
             <SignedOut>
-              <SignInButton mode="modal" />
+              <SignInButton mode="modal">
+                <Button className="rounded-full bg-stone-900 text-white hover:bg-stone-800 shadow-sm hover:shadow-md transition-all">
+                  Sign In
+                </Button>
+              </SignInButton>
             </SignedOut>
             <SignedIn>
               <UserButton />
