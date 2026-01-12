@@ -19,10 +19,6 @@ const nextConfig: NextConfig = {
         source: "/@:username",
         destination: "/:username",
       },
-      {
-        source: "/@:username/og",
-        destination: "/:username/og",
-      },
     ];
   },
 };

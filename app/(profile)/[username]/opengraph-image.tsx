@@ -4,11 +4,15 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 
 export const runtime = "edge";
+export const alt = "Profile on cal.date";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ username: string }> }
-) {
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}) {
   const { username } = await params;
 
   const user = await db.query.users.findFirst({
@@ -16,7 +20,30 @@ export async function GET(
   });
 
   if (!user) {
-    return new Response("User not found", { status: 404 });
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#fafaf9",
+            fontFamily: "system-ui, sans-serif",
+          }}
+        >
+          <div style={{ fontSize: 64, fontWeight: 600, color: "#1c1917" }}>
+            cal.date
+          </div>
+          <div style={{ fontSize: 24, color: "#78716c", marginTop: 16 }}>
+            Profile not found
+          </div>
+        </div>
+      ),
+      { ...size }
+    );
   }
 
   const displayName = user.displayName || user.username || "User";
@@ -29,7 +56,7 @@ export async function GET(
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#ffffff",
+          backgroundColor: "#fafaf9",
           fontFamily: "system-ui, sans-serif",
         }}
       >
@@ -47,7 +74,7 @@ export async function GET(
               alignItems: "center",
               width: "50%",
               padding: "60px",
-              borderRight: "1px solid #f5f5f5",
+              borderRight: "1px solid #e7e5e4",
             }}
           >
             {user.avatarUrl ? (
@@ -67,13 +94,13 @@ export async function GET(
                   width: 180,
                   height: 180,
                   borderRadius: "50%",
-                  backgroundColor: "#f5f5f5",
+                  backgroundColor: "#e7e5e4",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: 72,
                   fontWeight: 300,
-                  color: "#d4d4d4",
+                  color: "#a8a29e",
                 }}
               >
                 {(user.displayName?.[0] || user.username?.[0] || "?").toUpperCase()}
@@ -92,7 +119,7 @@ export async function GET(
                 style={{
                   fontSize: 42,
                   fontWeight: 600,
-                  color: "#171717",
+                  color: "#1c1917",
                   letterSpacing: "-0.02em",
                 }}
               >
@@ -101,7 +128,7 @@ export async function GET(
               <div
                 style={{
                   fontSize: 20,
-                  color: "#a3a3a3",
+                  color: "#78716c",
                   marginTop: 8,
                 }}
               >
@@ -131,7 +158,7 @@ export async function GET(
                     style={{
                       width: 40,
                       height: 1,
-                      backgroundColor: "#e5e5e5",
+                      backgroundColor: "#d6d3d1",
                     }}
                   />
                   <div
@@ -139,7 +166,7 @@ export async function GET(
                       fontSize: 10,
                       textTransform: "uppercase",
                       letterSpacing: "0.1em",
-                      color: "#d4d4d4",
+                      color: "#a8a29e",
                     }}
                   >
                     About
@@ -148,14 +175,14 @@ export async function GET(
                     style={{
                       width: 40,
                       height: 1,
-                      backgroundColor: "#e5e5e5",
+                      backgroundColor: "#d6d3d1",
                     }}
                   />
                 </div>
                 <div
                   style={{
                     fontSize: 16,
-                    color: "#525252",
+                    color: "#57534e",
                     textAlign: "center",
                     lineHeight: 1.6,
                   }}
@@ -174,7 +201,7 @@ export async function GET(
               alignItems: "center",
               width: "50%",
               padding: "60px",
-              backgroundColor: "#fafafa",
+              backgroundColor: "#ffffff",
             }}
           >
             <div
@@ -189,7 +216,7 @@ export async function GET(
                   fontSize: 14,
                   textTransform: "uppercase",
                   letterSpacing: "0.15em",
-                  color: "#a3a3a3",
+                  color: "#78716c",
                   marginBottom: 24,
                 }}
               >
@@ -200,7 +227,7 @@ export async function GET(
                 style={{
                   width: 200,
                   height: 1,
-                  backgroundColor: "#e5e5e5",
+                  backgroundColor: "#e7e5e4",
                   marginBottom: 40,
                 }}
               />
@@ -209,7 +236,7 @@ export async function GET(
                 style={{
                   fontSize: 64,
                   fontWeight: 600,
-                  color: "#171717",
+                  color: "#1c1917",
                   letterSpacing: "-0.04em",
                 }}
               >
@@ -219,11 +246,11 @@ export async function GET(
               <div
                 style={{
                   fontSize: 16,
-                  color: "#a3a3a3",
+                  color: "#78716c",
                   marginTop: 16,
                 }}
               >
-                /{user.username}
+                @{user.username}
               </div>
             </div>
           </div>
@@ -235,13 +262,13 @@ export async function GET(
             justifyContent: "space-between",
             alignItems: "center",
             padding: "20px 40px",
-            borderTop: "1px solid #f5f5f5",
+            borderTop: "1px solid #e7e5e4",
           }}
         >
           <div
             style={{
               fontSize: 12,
-              color: "#a3a3a3",
+              color: "#78716c",
             }}
           >
             Create your profile at cal.date
@@ -257,7 +284,7 @@ export async function GET(
               style={{
                 width: 1,
                 height: 12,
-                backgroundColor: "#e5e5e5",
+                backgroundColor: "#d6d3d1",
               }}
             />
             <div
@@ -265,7 +292,7 @@ export async function GET(
                 fontSize: 10,
                 textTransform: "uppercase",
                 letterSpacing: "0.15em",
-                color: "#d4d4d4",
+                color: "#a8a29e",
               }}
             >
               cal.date
@@ -274,9 +301,6 @@ export async function GET(
         </div>
       </div>
     ),
-    {
-      width: 1200,
-      height: 630,
-    }
+    { ...size }
   );
 }
