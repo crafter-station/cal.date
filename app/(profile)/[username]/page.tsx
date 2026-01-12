@@ -30,7 +30,7 @@ export async function generateMetadata({
     };
   }
 
-  const displayName = user.displayName || `@${user.username}`;
+  const displayName = user.displayName || user.username || "User";
   const description = user.bio || `Book a date with ${displayName} on cal.date`;
   const ogImageUrl = `https://cal.date/@${username}/og`;
 
@@ -79,7 +79,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     orderBy: [asc(userPhotos.order)],
   });
 
-  const displayName = user.displayName || user.username;
+  const displayName = user.displayName || user.username || "User";
   const isOwner = userId && user.clerkId === userId;
   const theme = getTheme(user.theme);
   const t = theme.styles;

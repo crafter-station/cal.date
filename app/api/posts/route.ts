@@ -1,8 +1,15 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
-import { posts, users, insertPostSchema } from "@/lib/db/schema";
+import { posts, users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { z } from "zod";
+
+const insertPostSchema = z.object({
+  title: z.string().min(1).max(200),
+  content: z.string().optional(),
+  _user: z.string().uuid(),
+});
 
 export async function GET() {
   const { userId: clerkId } = await auth();

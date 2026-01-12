@@ -19,7 +19,7 @@ export async function GET(
     return new Response("User not found", { status: 404 });
   }
 
-  const displayName = user.displayName || user.username;
+  const displayName = user.displayName || user.username || "User";
 
   return new ImageResponse(
     (
