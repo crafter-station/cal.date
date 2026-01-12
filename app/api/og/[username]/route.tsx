@@ -18,30 +18,7 @@ export async function GET(
   });
 
   if (!user) {
-    return new ImageResponse(
-      (
-        <div
-          style={{
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#fafaf9",
-            fontFamily: "system-ui, sans-serif",
-          }}
-        >
-          <div style={{ fontSize: 64, fontWeight: 600, color: "#1c1917" }}>
-            cal.date
-          </div>
-          <div style={{ fontSize: 24, color: "#78716c", marginTop: 16 }}>
-            Profile not found
-          </div>
-        </div>
-      ),
-      { ...size }
-    );
+    return Response.redirect(new URL("/og.png", request.url), 302);
   }
 
   const displayName = user.displayName || user.username || "User";

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: "cal.date",
     images: [
       {
-        url: "https://cal.date/og.png",
+        url: "https://www.cal.date/og.png",
         width: 1200,
         height: 630,
         alt: "cal.date - Make Dating Fun Again",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "cal.date | Make Dating Fun Again",
     description: "A fully customizable dating platform for connecting people through direct calendar booking.",
-    images: ["https://cal.date/og-twitter.png"],
+    images: ["https://www.cal.date/og-twitter.png"],
   },
   icons: {
     icon: [

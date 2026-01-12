@@ -27,6 +27,21 @@ export async function generateMetadata({
   if (!user) {
     return {
       title: "Profile not found | cal.date",
+      openGraph: {
+        title: "Profile not found | cal.date",
+        images: [
+          {
+            url: "https://www.cal.date/og.png",
+            width: 1200,
+            height: 630,
+            alt: "cal.date - Make Dating Fun Again",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        images: ["https://www.cal.date/og.png"],
+      },
     };
   }
 
@@ -49,6 +64,12 @@ export async function generateMetadata({
           height: 630,
           alt: `${displayName} on cal.date`,
         },
+        {
+          url: "https://www.cal.date/og.png",
+          width: 1200,
+          height: 630,
+          alt: "cal.date - Make Dating Fun Again",
+        },
       ],
     },
     twitter: {
@@ -56,7 +77,7 @@ export async function generateMetadata({
       title: `${displayName} | cal.date`,
       description,
       creator: `@${username}`,
-      images: [`https://www.cal.date/api/og/${username}`],
+      images: [`https://www.cal.date/api/og/${username}`, "https://www.cal.date/og.png"],
     },
   };
 }
