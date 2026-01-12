@@ -6,8 +6,8 @@ import { ArrowRight } from "lucide-react"
 export function Hero() {
   return (
     <section className="relative min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-20 sm:pt-24 pb-8 sm:pb-12 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_var(--love-pink-light)_0%,_transparent_50%)] opacity-40" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,_var(--love-pink-light)_0%,_transparent_40%)] opacity-30" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_rgba(0,0,0,0.02)_0%,_transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,_rgba(0,0,0,0.02)_0%,_transparent_40%)]" />
       
       <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 relative z-10">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-semibold tracking-tight text-balance leading-[1.1] animate-fade-in opacity-0 px-2">

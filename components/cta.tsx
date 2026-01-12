@@ -7,7 +7,7 @@ export function CTA() {
   return (
     <section className="py-16 sm:py-24 px-4 relative overflow-hidden">
       <div className="absolute inset-0 bg-foreground" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_var(--love-pink)_0%,_transparent_50%)] opacity-20" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(255,255,255,0.1)_0%,_transparent_50%)]" />
       
       <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 relative z-10 px-2">
         <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-background/10 mx-auto flex items-center justify-center">
