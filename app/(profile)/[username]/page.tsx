@@ -39,12 +39,12 @@ export async function generateMetadata({
     openGraph: {
       title: `${displayName} | cal.date`,
       description,
-      url: `https://cal.date/@${username}`,
+      url: `https://www.cal.date/@${username}`,
       siteName: "cal.date",
       type: "profile",
       images: [
         {
-          url: `https://cal.date/${username}/opengraph-image`,
+          url: `https://www.cal.date/api/og/${username}`,
           width: 1200,
           height: 630,
           alt: `${displayName} on cal.date`,
@@ -56,7 +56,7 @@ export async function generateMetadata({
       title: `${displayName} | cal.date`,
       description,
       creator: `@${username}`,
-      images: [`https://cal.date/${username}/opengraph-image`],
+      images: [`https://www.cal.date/api/og/${username}`],
     },
   };
 }

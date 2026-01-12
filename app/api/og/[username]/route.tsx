@@ -4,15 +4,13 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 
 export const runtime = "edge";
-export const alt = "Profile on cal.date";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
 
-export default async function Image({
-  params,
-}: {
-  params: Promise<{ username: string }>;
-}) {
+const size = { width: 1200, height: 630 };
+
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ username: string }> }
+) {
   const { username } = await params;
 
   const user = await db.query.users.findFirst({
