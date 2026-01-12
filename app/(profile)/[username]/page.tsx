@@ -32,6 +32,7 @@ export async function generateMetadata({
 
   const displayName = user.displayName || user.username || "User";
   const description = user.bio || `Book a date with ${displayName} on cal.date`;
+  const ogImageUrl = `https://cal.date/@${username}/opengraph-image`;
 
   return {
     title: `${displayName} | cal.date`,
@@ -42,11 +43,20 @@ export async function generateMetadata({
       url: `https://cal.date/@${username}`,
       siteName: "cal.date",
       type: "profile",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${displayName} on cal.date`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${displayName} | cal.date`,
       description,
+      images: [ogImageUrl],
       creator: `@${username}`,
     },
   };

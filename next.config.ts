@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
         source: "/@:username",
         destination: "/:username",
       },
+      {
+        source: "/@:username/opengraph-image",
+        destination: "/:username/opengraph-image",
+      },
+      {
+        source: "/@:username/twitter-image",
+        destination: "/:username/twitter-image",
+      },
     ];
   },
 };
