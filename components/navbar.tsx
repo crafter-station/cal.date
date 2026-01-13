@@ -1,9 +1,11 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Heart, Menu, X } from "lucide-react"
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs"
+import { Heart, Menu, X, Settings } from "lucide-react"
 import { GithubLogo } from "@/components/logos/github"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 export function Navbar() {
   const [githubStars, setGithubStars] = useState<number | null>(null)
@@ -69,9 +71,21 @@ export function Navbar() {
               </span>
             )}
           </a>
-          <Button size="sm" className="rounded-full px-3 sm:px-4 h-8 sm:h-9 text-xs sm:text-sm hidden sm:flex" asChild>
-            <a href="mailto:hello@cal.date">Get Started</a>
-          </Button>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button size="sm" className="rounded-full px-3 sm:px-4 h-8 sm:h-9 text-xs sm:text-sm hidden sm:flex">
+                Get Started
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <Button size="sm" className="rounded-full px-3 sm:px-4 h-8 sm:h-9 text-xs sm:text-sm hidden sm:flex gap-1.5" asChild>
+              <Link href="/settings">
+                <Settings className="w-3.5 h-3.5" />
+                Settings
+              </Link>
+            </Button>
+          </SignedIn>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-1.5 rounded-lg hover:bg-muted transition-colors"
@@ -99,9 +113,21 @@ export function Navbar() {
             >
               Features
             </a>
-            <Button size="sm" className="rounded-full w-full mt-2" asChild>
-              <a href="mailto:hello@cal.date">Get Started</a>
-            </Button>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <Button size="sm" className="rounded-full w-full mt-2">
+                  Get Started
+                </Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <Button size="sm" className="rounded-full w-full mt-2 gap-1.5" asChild>
+                <Link href="/settings" onClick={() => setMobileMenuOpen(false)}>
+                  <Settings className="w-3.5 h-3.5" />
+                  Settings
+                </Link>
+              </Button>
+            </SignedIn>
           </div>
         </div>
       )}

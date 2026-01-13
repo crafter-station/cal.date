@@ -1,7 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs"
 import { ArrowRight, Heart } from "lucide-react"
+import Link from "next/link"
 
 export function CTA() {
   return (
@@ -15,23 +17,33 @@ export function CTA() {
         </div>
         
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-semibold tracking-tight text-balance leading-tight text-background">
-          Ready to revolutionize how you connect people?
+          Ready to create your dating page?
         </h2>
 
         <p className="text-base sm:text-lg text-background/70 max-w-2xl mx-auto leading-relaxed">
-          We're building this out right now. If you're interested in getting a cal.date page for yourself or someone you know, let us know.
+          Create your personalized cal.date page in seconds. Share it with anyone and let them book time with you directly.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 sm:pt-4">
-          <Button size="lg" variant="secondary" className="rounded-full px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base group w-full sm:w-auto" asChild>
-            <a href="mailto:hello@cal.date">
-              Request Early Access
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-          </Button>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button size="lg" variant="secondary" className="rounded-full px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base group w-full sm:w-auto">
+                Create Your Page
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <Button size="lg" variant="secondary" className="rounded-full px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base group w-full sm:w-auto" asChild>
+              <Link href="/settings">
+                Edit Your Page
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </Button>
+          </SignedIn>
         </div>
 
-        <p className="text-xs sm:text-sm text-background/50 pt-2 sm:pt-4">Currently working with friends and early adopters</p>
+        <p className="text-xs sm:text-sm text-background/50 pt-2 sm:pt-4">Free forever. No credit card required.</p>
       </div>
     </section>
   )

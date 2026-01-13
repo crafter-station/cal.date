@@ -1,7 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 export function Hero() {
   return (
@@ -20,19 +22,29 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 sm:pt-4 animate-fade-in stagger-2 opacity-0 px-4">
-          <Button size="lg" className="rounded-full px-6 h-11 sm:h-12 text-sm sm:text-base gap-2 group w-full sm:w-auto" asChild>
-            <a href="mailto:hello@cal.date">
-              Get Your Page
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-          </Button>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button size="lg" className="rounded-full px-6 h-11 sm:h-12 text-sm sm:text-base gap-2 group w-full sm:w-auto">
+                Get Your Page
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <Button size="lg" className="rounded-full px-6 h-11 sm:h-12 text-sm sm:text-base gap-2 group w-full sm:w-auto" asChild>
+              <Link href="/settings">
+                Go to Settings
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </Button>
+          </SignedIn>
           <Button size="lg" variant="outline" className="rounded-full px-6 h-11 sm:h-12 text-sm sm:text-base bg-transparent w-full sm:w-auto" asChild>
             <a href="#how-it-works">See How It Works</a>
           </Button>
         </div>
 
         <p className="text-xs sm:text-sm text-muted-foreground pt-2 animate-fade-in stagger-3 opacity-0">
-          Currently in early access with friends and early adopters
+          Free to use. Create your page in seconds.
         </p>
       </div>
     </section>
